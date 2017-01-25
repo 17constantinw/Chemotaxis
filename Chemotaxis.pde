@@ -1,13 +1,59 @@
- //declare bacteria variables here   
+int x;
+int y;
+
+Bacteria [] dots; 
  void setup()   
  {     
- 	//initialize bacteria variables here   
+      size(500,500);
+      dots = new Bacteria[100];
+      for(int i = 0; i < dots.length; i++) {
+        dots[i] = new Bacteria();
+      }
  }   
  void draw()   
  {    
- 	//move and show the bacteria   
+   background(0);
+     for( int i = 0; i < dots.length; i++) {
+       dots[i].show();
+       dots[i].move();
+       
+      }
  }  
  class Bacteria    
  {     
- 	//lots of java!   
- }    
+
+     Bacteria(){
+       
+       x = 0;
+       y = (int)(Math.random()*3)-1;
+     }
+     void show(){
+       fill(random(255),random(255),random(255));
+       ellipse(x,y,10,10);
+     } 
+     void move(){
+      if(mouseX > x && y > mouseY){
+      x= x+(int)(Math.random()*8);
+      y= y-(int)(Math.random()*8);
+      }
+      else if(mouseX < x && y < mouseY){
+      x= x-(int)(Math.random()*8);
+      y= y+(int)(Math.random()*8);
+      }
+      else if(mouseX < x && y > mouseY){
+      x= x-(int)(Math.random()*8);
+      y= y-(int)(Math.random()*8);
+      }
+      else if(mouseX > x && y < mouseY){
+      x= x+(int)(Math.random()*8);
+      y= y+(int)(Math.random()*8);
+      } 
+      else{
+        x= x+(int)(Math.random()*8);
+        y= y+(int)(Math.random()*8);
+        x= x-(int)(Math.random()*8);
+        y= y-(int)(Math.random()*8);
+      }
+     }
+     
+ }
